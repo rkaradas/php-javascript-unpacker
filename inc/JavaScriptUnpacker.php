@@ -3,6 +3,7 @@
  * Copyright (c) 2015 Recep Karadas
  * 
  * 26 July 2015. version 1.0
+ * 16 November 2015. version 1.1
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
  * ----------------------------------------------------------------------
  * changelog:
  * 1.0 : Initial Release.
+ * 1.1 : Fixed the if-statements within the Unbaser constructor
  * ----------------------------------------------------------------------
  * 
  * examples of usage :
@@ -56,6 +58,7 @@ class JavaScriptUnpacker
 	function Unpack($source)
 	{
 		preg_match_all("/}\('(.*)', *(\d+), *(\d+), *'(.*?)'\.split\('\|'\)/",$source,$out);
+		
 		Debug::Write($out,"DOTALL", false);
 		
 		// Payload
@@ -121,9 +124,9 @@ class Unbaser
 	{
 		$this->base = $base;
 		
-		if($this->base > 52) $this->selector = 54;
+		if($this->base > 62) $this->selector = 95;
 		else if($this->base > 54) $this->selector = 62;
-		else if($this->base > 62) $this->selector = 95;
+		else if($this->base > 52) $this->selector = 54;
 	}
 	
 	function Unbase($val)
@@ -136,7 +139,6 @@ class Unbaser
 				
 				$this->dict = array_flip(str_split($this->ALPHABET[$this->selector]));
 			}
-			
 			$ret = 0;
 			$valArray = array_reverse(str_split($val));
 			
