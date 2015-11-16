@@ -18,7 +18,7 @@
  * 
  * Ported to PHP from:
  * https://github.com/Eldorados/script.module.urlresolver/blob/master/lib/urlresolver/plugins/lib/jsunpack.py
- 
+  
  * 
  * ----------------------------------------------------------------------
  * changelog:
